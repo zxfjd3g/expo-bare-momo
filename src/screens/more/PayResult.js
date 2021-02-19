@@ -22,7 +22,7 @@ import { connect } from "react-redux";
 const PayResult = ({ isPaySuccess }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{isPaySuccess ? "支付成功~~~~~" : "支付失败~~~~~"}</Text>
+      <Text>{isPaySuccess ? "支付成功~~~~~1111" : "支付失败~~~~~1111"}</Text>
     </SafeAreaView>
   );
 };
