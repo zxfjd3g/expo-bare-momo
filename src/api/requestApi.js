@@ -213,8 +213,24 @@ export default {
 	*/
 	getUserList: '/user/auth/findUserBaseInfoList',
 	
-	// 获取开通会员支付价格列表
-	getPriceList: '/order/getPayList',
+	/*
+    GET /api/order/getPayList
+    获取开通会员支付价格列表
+    */
+	getPriceList: "/order/getPayList",
+
+	/*
+    GET /api/order/createOrderPay/{buyTye}
+		支付宝下单支付
+			buyType  THREE, HALF_YEAR, YEAR
+    */
+	createOrderPay: "/order/createOrderPay",
+	
+	/*
+	GET /api/order/alipay/queryPayStatus/{outTradeNo}
+		查询支付宝下单支付状态
+	*/
+	queryPayStatus: "/order/alipay/queryPayStatus",
 };
 
 /* 
