@@ -1,0 +1,47 @@
+{
+  "code": 200,
+  "message": "成功",
+  "data": {
+    "userInfo": {
+      "id": 3,
+      "createTime": "2020-12-09 09:31:20",
+      "updateTime": "2020-12-25 15:32:26",
+      "isDeleted": 0,
+      "param": {
+        "industryName": "",
+        "cityName": "",
+        "areaName": "",
+        "incomeName": "",
+        "sexName": "女",
+        "provinceName": "",
+        "marriageName": ""
+      },
+      "userId": 3,
+      "nickName": "mm",
+      "birthday": "2020-12-03 00:00:00",
+      "mobile": "15011111111",
+      "avatar": "https://shejiao-flie.oss-cn-shanghai.aliyuncs.com/portrait/2020/12/24/df2e4bcd-2feb-4211-8e9e-b00e2911df67.jpg",
+      "sex": "WOMAN",
+      "pictures": null,
+      "province": null,
+      "city": null,
+      "area": null,
+      "areainfo": null,
+      "signature": null,
+      "industry": null,
+      "income": null,
+      "marriage": null,
+      "height": null,
+      "introduce": null
+    },
+    "userData": {
+      "distance": 1,
+      "postCount": 7,
+      "fansCount": 3,
+      "userId": 3,
+      "isVip": 0
+    },
+    "isFllow": false
+  },
+  "ok": true
+}

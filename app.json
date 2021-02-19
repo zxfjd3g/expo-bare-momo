@@ -1,0 +1,12 @@
+{
+  "name": "expo-bare-momo",
+  "displayName": "expo-bare-momo",
+  "expo": {
+    "name": "expo-bare-momo",
+    "slug": "expo-bare-momo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
