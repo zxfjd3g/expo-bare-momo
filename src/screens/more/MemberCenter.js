@@ -6,9 +6,9 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   ScrollView,
   FlatList,
-  Button
 } from "react-native";
 import {
   AntDesign,
@@ -22,13 +22,11 @@ import { useNavigation } from "@react-navigation/native";
 // redux
 import { connect } from "react-redux";
 
-import { getPriceList } from "@/redux/actions";
+import { getPriceList, createOrderPay } from "@/redux/actions";
 
-const MemberCenter = ({ getPriceList, priceList }) => {
-
+const MemberCenter = ({ getPriceList, createOrderPay, priceList }) => {
+  const [selectedMember, setSelectedMember] = useState(null);
   const navigation = useNavigation();
-  
-  const [selectedId, setSelectedId] = useState(null);
 
   // 发送请求，请求会员价格列表
   useEffect(() => {
@@ -104,16 +102,17 @@ const MemberCenter = ({ getPriceList, priceList }) => {
 
     return {
       id: index,
+      key,
       name,
       price: priceList[key],
     };
   });
 
   const priceListRenderItem = ({ item }) => {
-    const borderColor = item.id === selectedId ? "#FE9A2E" : "#000";
+    const borderColor = item.key === selectedMember ? "#FE9A2E" : "#000";
 
     return (
-      <TouchableOpacity onPress={() => setSelectedId(item.id)}>
+      <TouchableOpacity onPress={() => setSelectedMember(item.key)}>
         <View style={[styles.memberShopContainer, { borderColor }]}>
           <Text style={styles.memberShopTop}>{item.name}</Text>
           <Text style={styles.memberShopBottom}>
@@ -124,8 +123,6 @@ const MemberCenter = ({ getPriceList, priceList }) => {
       </TouchableOpacity>
     );
   };
-
-  console.log(priceListData);
 
   // 支付
   const onAliPay = async () => {
@@ -148,6 +145,7 @@ const MemberCenter = ({ getPriceList, priceList }) => {
           renderItem={memberPrivilegesRenderItem}
           keyExtractor={(item) => item.id}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
         />
 
         <View style={styles.memberShop}>
@@ -159,18 +157,19 @@ const MemberCenter = ({ getPriceList, priceList }) => {
               renderItem={priceListRenderItem}
               keyExtractor={(item) => item.id}
               horizontal={true}
+              showsHorizontalScrollIndicator={false}
             />
 
             <Text style={styles.memberShopSub}>
               成为会员即表示同意
-              <Text style={styles.memberShopSubText}>xxx</Text>协议
+              <Text style={styles.memberShopSubText}>xxxxxxxxxxxx</Text>协议
             </Text>
 
-            <Button
-              onPress={onAliPay}
-              title="支付宝支付"
-              color="#841584"
-            />
+            <TouchableWithoutFeedback onPress={onAliPay}>
+              <View style={styles.memberPayBtn}>
+                <Text style={styles.memberPayBtnText}>支付宝支付</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </View>
@@ -203,11 +202,13 @@ const styles = StyleSheet.create({
   },
   memberPrivileges: {
     paddingTop: 20,
+    paddingLeft: 10,
     marginBottom: 20,
   },
   memberPrivilegesItem: {
     position: "relative",
-    marginRight: 30,
+    marginLeft: 15,
+    marginRight: 15,
     height: 100,
   },
   memberPrivilegesItemIconContainer: {
@@ -232,13 +233,14 @@ const styles = StyleSheet.create({
   },
   memberShopTitle: {
     backgroundColor: "white",
+    paddingLeft: 15,
     paddingBottom: 20,
   },
   memberShopWrap: {
     padding: 20,
   },
   memberShopContainer: {
-    width: 140,
+    width: 110,
     height: 100,
     marginRight: 10,
     borderWidth: 1,
@@ -271,6 +273,18 @@ const styles = StyleSheet.create({
     textDecorationColor: "#000",
     textDecorationStyle: "solid",
   },
+  memberPayBtn: {
+    height: 50,
+    borderRadius: 30,
+    marginTop: 10,
+    backgroundColor: "#9966ff",
+  },
+  memberPayBtnText: {
+    textAlign: "center",
+    lineHeight: 50,
+    color: "#fff",
+    fontWeight: "500",
+  },
 });
 
 // react-redux 属性方法映射
@@ -280,6 +294,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { getPriceList };
+const mapDispatchToProps = { getPriceList, createOrderPay };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberCenter);
